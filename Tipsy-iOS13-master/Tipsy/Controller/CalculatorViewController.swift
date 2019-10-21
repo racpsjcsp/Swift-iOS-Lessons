@@ -16,7 +16,9 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var twentyPctButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
     
-    var pctValue = 0.0
+    var tip = 0.0
+    var splitNumber = 2 //min required to split...
+    var billTotal = 0.0
     
     @IBAction func tipChanged(_ sender: UIButton) {
         zeroPctButton.isSelected = false
@@ -25,21 +27,26 @@ class CalculatorViewController: UIViewController {
         
         sender.isSelected = true
         let buttonTitle = sender.currentTitle!
-        print("ButtonTitle:", buttonTitle)
         let buttonTitleMinusPctSign = String(buttonTitle.dropLast())
-        print(buttonTitleMinusPctSign)
         let buttonTitleAsANumber = Double(buttonTitleMinusPctSign)!
-        pctValue = buttonTitleAsANumber / 100
+        tip = buttonTitleAsANumber / 100
+        
+        billTextField.endEditing(true)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        let value = sender.value
-        splitNumberLabel.text = String(format: "%.0f", value)
+        splitNumberLabel.text = String(format: "%.0f", sender.value)
+        splitNumber = Int(sender.value)
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        print(pctValue)
+        let bill = billTextField.text!
+        if bill != "" {
+            billTotal = Double(bill)!
+            let result = billTotal * (1 + tip) / Double(splitNumber)
+            let resultToDecimal = String(format: "%.2f", result)
+            print(resultToDecimal)
+        }
     }
-    
 }
 
