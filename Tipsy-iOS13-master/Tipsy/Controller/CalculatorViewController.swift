@@ -19,7 +19,8 @@ class CalculatorViewController: UIViewController {
     var tip = 0.0
     var splitNumber = 2 //min required to split...
     var billTotal = 0.0
-    
+    var finalResult = "0.0"
+        
     @IBAction func tipChanged(_ sender: UIButton) {
         zeroPctButton.isSelected = false
         tenPctButton.isSelected = false
@@ -44,8 +45,16 @@ class CalculatorViewController: UIViewController {
         if bill != "" {
             billTotal = Double(bill)!
             let result = billTotal * (1 + tip) / Double(splitNumber)
-            let resultToDecimal = String(format: "%.2f", result)
-            print(resultToDecimal)
+            finalResult = String(format: "%.2f", result)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultsViewController
+            destinationVC.result = finalResult
+            destinationVC.tip = Int(tip * 100)
+            destinationVC.split = splitNumber
         }
     }
 }
