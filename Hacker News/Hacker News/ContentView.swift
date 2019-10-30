@@ -25,13 +25,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-struct Post: Identifiable {
-   let id: String  //must have because of the Identifiable protocol
-   let title: String
-    
-}
-
 let posts = [
     Post(id: "1", title: "hello"),
     Post(id: "2", title: "ola"),
