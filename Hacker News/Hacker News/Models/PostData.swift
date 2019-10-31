@@ -19,5 +19,5 @@ struct Post: Decodable, Identifiable {
     let objectID: String    //json id
     let title: String
     let points: Int
-    let url: String
+    let url: String?
 }
