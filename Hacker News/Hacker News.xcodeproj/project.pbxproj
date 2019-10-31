@@ -22,6 +22,7 @@
 /* Begin PBXFileReference section */
 		46D43B98236B1CA500CA0FED /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		46D43B9A236B1FB400CA0FED /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		46D43B9C236B224000CA0FED /* Hacker News.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hacker News.entitlements"; sourceTree = "<group>"; };
 		46F20574236A099E0061F920 /* Hacker News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F20577236A099E0061F920 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46F20579236A099E0061F920 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		46F20576236A099E0061F920 /* Hacker News */ = {
 			isa = PBXGroup;
 			children = (
+				46D43B9C236B224000CA0FED /* Hacker News.entitlements */,
 				46F2058B236A4E7E0061F920 /* Models */,
 				46F20577236A099E0061F920 /* AppDelegate.swift */,
 				46F20579236A099E0061F920 /* SceneDelegate.swift */,
@@ -316,8 +318,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Hacker News/Hacker News.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hacker News/Preview Content\"";
+				DEVELOPMENT_TEAM = 3XA87D77BQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Hacker News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -326,6 +332,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.RafaelPlinio.Hacker-News";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -335,8 +342,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Hacker News/Hacker News.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hacker News/Preview Content\"";
+				DEVELOPMENT_TEAM = 3XA87D77BQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Hacker News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +356,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.RafaelPlinio.Hacker-News";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
