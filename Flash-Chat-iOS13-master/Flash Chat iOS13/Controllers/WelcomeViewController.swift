@@ -16,8 +16,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = "⚡️FlashChat"
-        
+        titleLabel.text = K.appName
+          
         
         //no longer needed because of the CLTypingLabel
         
