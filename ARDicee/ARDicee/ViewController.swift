@@ -81,7 +81,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 )
             
                 sceneView.scene.rootNode.addChildNode(diceNode)
-                
+                    //rotate along x axis - four faces to show equally -- pi/2 = 90 degrees
+                    let randomX = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
+                    
+                    let randomZ = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
+                    
+                    //Y axis doesn't need to be rotate, won't change the result number
+                    
+                    diceNode.runAction(SCNAction.rotateBy(x: CGFloat(randomX * 5), y: 0, z: CGFloat(randomZ * 5), duration: 0.5)
+                    )
                 }
             }
         }
