@@ -3,8 +3,7 @@
 //  Clima
 //
 //  Created by Rafael Plinio on 23/10/19.
-//  Copyright © 2019 App Brewery. All rights reserved.
-//
+
 
 import Foundation
 import CoreLocation
@@ -13,7 +12,6 @@ protocol WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didFailWithError(error: Error)
     func requestLocation()
-
 }
 
 struct WeatherManager {
@@ -30,17 +28,16 @@ struct WeatherManager {
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString)
     }
-
     
     func performRequest(with urlString: String) {
-        //1 - create a URL
         
+        //1 - cria a URL
         if let url = URL(string: urlString) {
             
-            //2  - create a URLSession
+            //2  - cria a URLSession
             let session = URLSession(configuration: .default)
             
-            //3 - give the session a task
+            //3 - atribui uma tarefa para a session
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
@@ -50,11 +47,11 @@ struct WeatherManager {
                 if let safeData = data {
                     if let weather = self.parseJSON(weatherData: safeData) {
                         self.delegate?.didUpdateWeather(self, weather: weather)
-                    } //inside a closure, needs a self.
+                    } //dentro de uma closure, precisa de self.
                 }
             }
             
-            //4 - start the task
+            //4 - inicia a tarefa
             task.resume()
         }
     }
@@ -76,8 +73,5 @@ struct WeatherManager {
             return nil
         }
     }
-    
-    
-    
     
 }

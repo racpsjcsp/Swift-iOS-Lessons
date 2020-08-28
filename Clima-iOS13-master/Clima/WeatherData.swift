@@ -3,12 +3,11 @@
 //  Clima
 //
 //  Created by Rafael Plinio on 24/10/19.
-//  Copyright © 2019 App Brewery. All rights reserved.
-//
+
 
 import Foundation
 
-//structs accordingly to the json from openweathermap.org api
+//structs de acordo com o json da api openweathermap.org
 
 struct WeatherData: Codable {
     let name: String
