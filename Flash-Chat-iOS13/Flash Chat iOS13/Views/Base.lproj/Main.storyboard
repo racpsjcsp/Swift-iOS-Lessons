@@ -256,11 +256,20 @@
                                     <constraint firstItem="mZe-tG-Gm8" firstAttribute="leading" secondItem="7JT-7R-lw4" secondAttribute="leading" id="scf-xJ-Rnr"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGP-9s-UNx">
+                                <rect key="frame" x="16" y="358" width="382" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.054607855279999999" blue="0.034309572500000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1647058824" green="0.78039215689999997" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mkq-A4-A98" firstAttribute="leading" secondItem="ibK-5F-w36" secondAttribute="leading" id="2C5-yn-42W"/>
                             <constraint firstItem="Mkq-A4-A98" firstAttribute="top" secondItem="ibK-5F-w36" secondAttribute="top" id="HHp-L5-4dK"/>
+                            <constraint firstItem="ibK-5F-w36" firstAttribute="trailing" secondItem="fGP-9s-UNx" secondAttribute="trailing" constant="16" id="KG6-HS-A7N"/>
+                            <constraint firstItem="fGP-9s-UNx" firstAttribute="leading" secondItem="ibK-5F-w36" secondAttribute="leading" constant="16" id="PCu-li-BnO"/>
+                            <constraint firstItem="fGP-9s-UNx" firstAttribute="top" secondItem="7JT-7R-lw4" secondAttribute="bottom" constant="16" id="ZVW-gm-Lg2"/>
                             <constraint firstItem="Mkq-A4-A98" firstAttribute="trailing" secondItem="ibK-5F-w36" secondAttribute="trailing" id="b5A-nE-cpV"/>
                             <constraint firstItem="7JT-7R-lw4" firstAttribute="leading" secondItem="ibK-5F-w36" secondAttribute="leading" id="dag-ZR-y4c"/>
                             <constraint firstItem="7JT-7R-lw4" firstAttribute="trailing" secondItem="ibK-5F-w36" secondAttribute="trailing" id="mpt-SH-Lld"/>
@@ -272,6 +281,7 @@
                     <connections>
                         <outlet property="emailTextfield" destination="F21-w0-z4z" id="YUG-Hl-Rxj"/>
                         <outlet property="passwordTextfield" destination="abR-gz-opL" id="xCU-X2-hrx"/>
+                        <outlet property="warningLabel" destination="fGP-9s-UNx" id="wS0-Da-Ims"/>
                         <segue destination="lwd-AH-u8E" kind="show" identifier="LoginToChat" id="uhm-nS-o41"/>
                     </connections>
                 </viewController>
