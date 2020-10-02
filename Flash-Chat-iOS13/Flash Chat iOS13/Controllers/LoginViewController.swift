@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
                     print(e)
                     self.warningLabel.text = e.localizedDescription
                 } else {
-                    self.performSegue(withIdentifier: "LoginToChat", sender: self)
+                    self.performSegue(withIdentifier: K.loginSegue, sender: self)
                 }
         }
         
