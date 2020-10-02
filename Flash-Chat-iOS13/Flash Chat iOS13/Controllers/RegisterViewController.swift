@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
                     self.warningLabel.text = e.localizedDescription
                 } else {
                     //Navigate to the ChatViewController
-                    self.performSegue(withIdentifier: Constants.registerSegue, sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
             }
         }
