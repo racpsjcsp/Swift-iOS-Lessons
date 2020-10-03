@@ -14,11 +14,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    var messages: [Message] = [
-        Message(sender: "abc@123.com", body: "Oi..."),
-        Message(sender: "xyz@456.com", body: "E ai"),
-        Message(sender: "abc@123.com", body: "Como vai?")
-    ]
+    let db = Firestore.firestore() //referencia ao banco de dados
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +32,27 @@ class ChatViewController: UIViewController {
         
         //registrando nib
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        loadMessages()
+    }
+    
+    func loadMessages() {
+        
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        //guarda a mensagem qdo clica em enviar
+        //guarda o usuario que enviou a mensagem
+        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+            db.collection(K.FStore.collectionName).addDocument(data: [K.FStore.senderField: messageSender, K.FStore.bodyField: messageBody]) { (error) in
+                if let e = error {
+                    print("There was an issue saving data to firestore, \(e)")
+                } else {
+                    print("There were no errors")
+                }
+            }
+        }
+         
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
