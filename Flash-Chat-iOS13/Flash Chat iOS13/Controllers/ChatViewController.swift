@@ -17,11 +17,7 @@ class ChatViewController: UIViewController {
     let db = Firestore.firestore() //referencia ao banco de dados
     
     //dummy messages pra testes
-    var messages: [Message] = [
-        Message(sender: "abc@123.com", body: "Oi..."),
-        Message(sender: "xyz@456.com", body: "E ai"),
-        Message(sender: "abc@123.com", body: "Como vai?")
-    ]
+    var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +38,14 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
-        messages = [] //limpando dummy messages
         
-        db.collection(K.FStore.collectionName).getDocuments() { (querySnapshot, error) in
+        //.order(by:) para ordenar as mensages no db em ordem de data
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { (querySnapshot, error) in
+            
+            self.messages = [] //limpando dummy messages
+            
             if let e = error {
                 print("Error getting documents: \(e)")
             } else {
@@ -71,7 +72,11 @@ class ChatViewController: UIViewController {
         //guarda a mensagem qdo clica em enviar
         //guarda o usuario que enviou a mensagem
         if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
-            db.collection(K.FStore.collectionName).addDocument(data: [K.FStore.senderField: messageSender, K.FStore.bodyField: messageBody]) { (error) in
+            db.collection(K.FStore.collectionName).addDocument(data: [
+                K.FStore.senderField: messageSender,
+                K.FStore.bodyField: messageBody,
+                K.FStore.dateField: Date().timeIntervalSince1970
+                ]) { (error) in
                 if let e = error {
                     print("There was an issue saving data to firestore, \(e)")
                 } else {
