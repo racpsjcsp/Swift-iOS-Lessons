@@ -16,7 +16,12 @@ class ChatViewController: UIViewController {
     
     let db = Firestore.firestore() //referencia ao banco de dados
     
-    
+    //dummy messages pra testes
+    var messages: [Message] = [
+        Message(sender: "abc@123.com", body: "Oi..."),
+        Message(sender: "xyz@456.com", body: "E ai"),
+        Message(sender: "abc@123.com", body: "Como vai?")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +42,29 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
+        messages = [] //limpando dummy messages
         
+        db.collection(K.FStore.collectionName).getDocuments() { (querySnapshot, error) in
+            if let e = error {
+                print("Error getting documents: \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        let data = doc.data()
+                        //data pode ser qualquer coisa, então downcast pra string
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.messages.append(newMessage)
+                            
+                            //atualiza a tela do chat assim que abre, trazendo as mensagens que estão no banco (historico)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
