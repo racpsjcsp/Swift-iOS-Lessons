@@ -60,6 +60,8 @@ class ChatViewController: UIViewController {
                             //atualiza a tela do chat assim que abre, trazendo as mensagens que estão no banco (historico)
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                             }
                         }
                     }
@@ -81,6 +83,7 @@ class ChatViewController: UIViewController {
                     print("There was an issue saving data to firestore, \(e)")
                 } else {
                     print("There were no errors")
+                    self.messageTextfield.text = ""
                 }
             }
         }
